@@ -1,10 +1,11 @@
 import React from "react";
-import {landingPage} from "../../assets/dummyStyles";
+import {landingPageStyles as s} from "../../assets/dummyStyles";
+import Navbar from "../../components/common/Navbar";
 
 const LandingPage = () => {
     return (
-        <div className={}>
-
+        <div className={s.bgMain}>
+            <Navbar />
         </div>
     )
 }
