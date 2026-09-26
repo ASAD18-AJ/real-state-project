@@ -1,8 +1,8 @@
-import Property from "../models/property.model";
-import Inquiry from "../models/inquiry.model";
+import Property from "../models/property.model.js";
+import Inquiry from "../models/inquiry.model.js";
 import jwt from "jsonwebtoken"
-import { uploadToCloudinary } from "../utils/uploadToCloudinary";
-import cloudinary from "../config/cloudinary";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
+import cloudinary from "../config/cloudinary.js";
 
 
 //Add a property

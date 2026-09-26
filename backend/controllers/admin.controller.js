@@ -1,6 +1,6 @@
-import User from '../models/user.model'
-import Property from '../models/property.model'
-import Inquiry from '../models/inquiry.model'
+import User from '../models/user.model.js'
+import Property from '../models/property.model.js'
+import Inquiry from '../models/inquiry.model.js'
 
 //view all users
 export const getAllUsers = async(req,res)=> {
