@@ -1,7 +1,7 @@
 import express from 'express'
-import { authorize,protect } from '../middlewares/auth.middleware'
-import { approveSeller, blockUser, deleteUser, getAllInquiries, getAllUsers, getDashboardStats, getPendingSellers } from '../controllers/admin.controller'
-import { deleteProperty, getAllProperties } from '../controllers/property.controller';
+import { authorize,protect } from '../middlewares/auth.middleware.js'
+import { approveSeller, blockUser, deleteUser, getAllInquiries, getAllUsers, getDashboardStats, getPendingSellers } from '../controllers/admin.controller.js'
+import { deleteProperty, getAllProperties } from '../controllers/property.controller.js';
 
 const adminRouter = express.Router();
 
