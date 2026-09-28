@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+// import API_URL from "../../config";
 
 const API_URL = "http://localhost:5000"; // Replace with your backend API URL
 const AuthContext= createContext();
@@ -105,9 +106,23 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    return <AuthContext.Provider>
-
+    return (
+        <AuthContext.Provider
+            value={{
+                user,
+                setUser,
+                token,
+                loading,
+                login,
+                register,
+                logout,
+                refreshUser,
+            }}
+        >
+            {children}
+        
     </AuthContext.Provider>
+    )
 };
 
 export const useAuth = () => useContext(AuthContext);
