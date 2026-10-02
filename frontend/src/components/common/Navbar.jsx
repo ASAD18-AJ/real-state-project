@@ -137,6 +137,12 @@ const Navbar = () => {
                 }
                 alt="Profile"
                 className={s.drawerAvatar} />
+
+              <div>
+                <div className={s.drawerUserName}>{user.name}</div>
+                <div className={s.drawerUserEmail}>{user.email}</div>
+              </div>
+              
             </div>
           </div>
         )}
