@@ -142,8 +142,10 @@ const Navbar = () => {
                 <div className={s.drawerUserName}>{user.name}</div>
                 <div className={s.drawerUserEmail}>{user.email}</div>
               </div>
-              
             </div>
+            <button onClick={logout} className={s.drawerLogoutButton}>
+              Logout
+            </button>
           </div>
         )}
       </div>
