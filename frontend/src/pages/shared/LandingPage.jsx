@@ -1,4 +1,4 @@
-import { HiLocationMarker } from "react-icons/hi";
+import { HiCurrencyDollar, HiHome, HiLightningBolt, HiLocationMarker, HiOfficeBuilding, HiShieldCheck, HiVideoCamera } from "react-icons/hi";
 import { landingPageStyles as s } from "../../assets/dummyStyles";
 import Navbar from "../../components/common/Navbar";
 import { HiLocationMarker } from "react-icons/hi";
@@ -81,7 +81,79 @@ const LandingPage = () => {
         console.error("Failed to fetch property counts: ", err);
       }
     };
+
+    //to fetch properties
+    const fetchProperties = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(`${API_URL}/api/property?city=${search}`);
+        setProperties(res.data.properties || res.data || []);
+        setError(null);
+      } catch (error) {
+        setError("Failed to load properties. Please try again");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    const handleSearch = (e) => {
+      e.preventDefault();
+      const params = new URLSearchParams();
+      if(searchTerm) params.append("city", searchTerm);
+      if(propertyType!=="Select Type") params.append("type", propertyType);
+      navigate(`/properties?${params.toString()}`);
+    }
     
+    const categories = [
+    {
+      name: "Modern Flats",
+      count: propertyCounts.flat || 0,
+      icon: <HiOfficeBuilding size={32} />,
+      type: "flat",
+    },
+    {
+      name: "Luxury Villas",
+      count: propertyCounts.villa || 0,
+      icon: <HiHome size={32} />,
+      type: "villa",
+    },
+    {
+      name: "Penthouse",
+      count: propertyCounts.penthouse || 0,
+      icon: <HiOfficeBuilding size={32} />,
+      type: "penthouse",
+    },
+    {
+      name: "Commercial",
+      count: propertyCounts.commercial || 0,
+      icon: <HiOfficeBuilding size={32} />,
+      type: "commercial",
+    },
+  ];
+
+  const features = [
+    {
+      title: "Verified Trust",
+      desc: "Every listing is strictly audited for ownership, condition, and legality.",
+      icon: <HiShieldCheck size={24} />,
+    },
+    {
+      title: "Smart Search",
+      desc: "Our AI-driven algorithms help you find the best matches based on preferences.",
+      icon: <HiLightningBolt size={24} />,
+    },
+    {
+      title: "Best Value",
+      desc: "Direct-from-owner listings and zero-commission options to ensure competitive prices.",
+      icon: <HiCurrencyDollar size={24} />,
+    },
+    {
+      title: "Virtual Tours",
+      desc: "High-definition 3D tours allow you to experience the property from home.",
+      icon: <HiVideoCamera size={24} />,
+    },
+  ];
+
   return (
     <div className={s.bgMain}>
       <Navbar />
@@ -113,6 +185,26 @@ const LandingPage = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className={s.inputTransparent}
                 />
+              </div>
+            </div>
+            <div className={s.searchDivider}></div>
+            <div className={s.searchField}>
+              <div className={s.textPrimary}>
+                <HiHome size={26} />
+              </div>
+              <div className={s.flexCol}>
+                <label className={s.labelSmall}>Property Type</label>
+                <select
+                  value={propertyType}
+                  onChange={(e) => setPropertyType(e.target.value)}
+                  className={`${s.inputTransparent} cursor-pointer`}
+                >
+                  <option value="Select Type">Select Type</option>
+                  <option value="flat">Flat/Apartment</option>
+                  <option value="villa">Villa/House</option>
+                  <option value="penthouse">Penthouse</option>
+                  <option value="commercial">Commercial</option>
+                </select>
               </div>
             </div>
           </form>
