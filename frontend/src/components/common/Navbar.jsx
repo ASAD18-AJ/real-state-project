@@ -3,6 +3,7 @@ import Logo from "./Logo"
 import { useAuth } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import { useState } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
